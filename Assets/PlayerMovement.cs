@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    private void FixedUpdate()
+    void FixedUpdate()
     {
         Vector3 movement = new Vector3(moveValue.x, 0.0f, moveValue.y);
 
