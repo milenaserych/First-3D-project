@@ -1,21 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    public Vector2 moveValue;
+    public float speed;
+
+    void OnMove(InputValue value) {
+        moveValue = value.Get<Vector2>();
+
     }
 
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
-        if (Input.GetKeyDown("space"))
-        {
-            GetComponent<Rigidbody>().velocity = new Vector3(0, 5, 0);
-        }
+        Vector3 movement = new Vector3(moveValue.x, 0.0f, moveValue.y);
+
+        GetComponent<Rigidbody>().AddForce(movement * speed * Time.fixedDeltaTime);
     }
 }
