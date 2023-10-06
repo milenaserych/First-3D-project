@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public Vector2 moveValue;
     public float speed;
     private int count;
-    private int numPickups = 8; //Put here the number of pickups you have.
+    private int numPickups = 3; //Put here the number of pickups you have.
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI winText;
 
@@ -36,14 +36,16 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.gameObject.tag == "PickUp")
         {
-            other.gameObject.SetActive(false); count++;
+            other.gameObject.SetActive(false);
+            count++;
             SetCountText();
         }
     }
 
     private void SetCountText()
     {
-        scoreText.text = "Score: " + count.ToString(); if (count >= numPickups)
+        scoreText.text = "Score: " + count.ToString();
+        if (count >= numPickups)
         {
             winText.text = "You win!";
         }
